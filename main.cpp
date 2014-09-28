@@ -186,10 +186,10 @@ int nefon(const QByteArray &fon, dword_t neoff)
                 QByteArray fnt(fon.constData() + start, size);
                 Font fobj = dofnt(fnt);
                 for (int c = 32; c < 256; ++c) {
-                    QBitmap img(fobj.chars[c].width, fobj.height);
+                    QImage img(fobj.chars[c].width, fobj.height, QImage::Format_ARGB32_Premultiplied);
+                    img.fill(Qt::transparent);
                     QPainter p(&img);
-                    p.setPen(Qt::color1);
-                    img.clear();
+                    p.setPen(Qt::black);
 
                     for (int j = 0; j < fobj.height; ++j) {
                         long v = fobj.chars[c].data[j];
