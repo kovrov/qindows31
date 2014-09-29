@@ -8,7 +8,19 @@ Rectangle {
     Window {
         width: 250
         height: 200
-        x: 100
-        y: 100
+        title: "Another window"
+
+        content: WindowsText {
+            text: "Some more text"
+        }
+    }
+    Window {
+        width: 250
+        height: 200
+        title: "A window"
+
+        content: WindowsText {
+            text: "Hello, world"
+        }
     }
 }
