@@ -30,6 +30,7 @@
 #include <QDebug>
 #include <QGuiApplication>
 #include <QtEndian>
+#include <QQuickView>
 
 typedef uint16_t word_t;
 typedef uint32_t dword_t;
@@ -154,7 +155,7 @@ Font dofnt(const QByteArray &fnt)
     return fobj;
 }
 
-int nefon(const QByteArray &fon, dword_t neoff)
+Font nefon(const QByteArray &fon, dword_t neoff) // TODO: fon files can return >1 fnt
 {
     // Find the resource table
     word_t rtable = Word::fromIndex(fon, neoff + 0x24);
@@ -178,13 +179,25 @@ int nefon(const QByteArray &fon, dword_t neoff)
             word_t size = Word::fromIndex(fon, p + 2) << shift;
             if (start < 0 || size < 0 || start + size > fon.length()) {
                 qWarning() << "Resource overruns file boundaries";
-                return -1;
+                return Font();
             }
 
             if (rtype == 0x8008) {
                 // it's a font
                 QByteArray fnt(fon.constData() + start, size);
-                Font fobj = dofnt(fnt);
+                return dofnt(fnt); // TODO: we should handle >1 FNT in FON
+                // TODO: do something with the return value
+            }
+
+            p = p + 12; // start, size, flags, name/id, 4 bytes reserved
+        }
+    }
+
+    return Font();
+}
+
+
+#if 0
                 for (int c = 32; c < 256; ++c) {
                     QImage img(fobj.chars[c].width, fobj.height, QImage::Format_ARGB32_Premultiplied);
                     img.fill(Qt::transparent);
@@ -218,17 +231,10 @@ int nefon(const QByteArray &fon, dword_t neoff)
                     img.save(&file, "PNG");
 //                    qDebug() << "End";
                 }
-                // TODO: do something with the return value
-            }
+#endif
 
-            p = p + 12; // start, size, flags, name/id, 4 bytes reserved
-        }
-    }
 
-    return 0;
-}
-
-int dofon(const QByteArray &fon)
+Font dofon(const QByteArray &fon)
 {
     // Find the NE header
     dword_t neoff = DWord::fromIndex(fon, 0x3c);
@@ -240,24 +246,24 @@ int dofon(const QByteArray &fon)
                fon.at(neoff + 2) == '\0' &&
                fon.at(neoff + 3) == '\0') {
         qWarning() << "Unhandled Portable Executable format font";
-        return -1;
+        return Font();
     } else {
         qWarning() << "NE or PE signature not found";
     }
-    return 0;
+    return Font();
 }
 
-int readFontFile(const char *fileName)
+Font readFontFile(const char *fileName)
 {
     QFile f(fileName);
     if (!f.open(QIODevice::ReadOnly)) {
         qWarning() << "Failed to open font file " << f.errorString();
-        return -1;
+        return Font();
     }
 
     if (f.size() > 10000 /* arbitrary limit */) {
         qWarning() << "Font is too big";
-        return -1;
+        return Font();
     }
 
     QByteArray fontData = f.readAll();
@@ -267,15 +273,21 @@ int readFontFile(const char *fileName)
     } else {
         // FNT file
         qWarning() << "Got FNT file, can't handle that";
-        return -1;
+        return Font();
     }
 }
+
+static Font *SystemFont;
 
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
 
-    readFontFile("VGASYS.FON");
+    Font fnt = readFontFile("VGASYS.FON"); // TODO: handle failure
+    SystemFont = &fnt;
 
-    return 0;
+    QQuickView view(QUrl::fromLocalFile("windows31.qml"));
+    view.show();
+
+    return app.exec();
 }
