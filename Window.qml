@@ -22,6 +22,7 @@ Rectangle {
                 Globals.currentlySelectedWindow.active = false;
 
             Globals.currentlySelectedWindow = this;
+            root.z = Globals.maxZOrder++
         }
     }
 
@@ -137,7 +138,6 @@ Rectangle {
         anchors.fill: parent
         onPressed: {
             root.active = true
-            root.z = Globals.maxZOrder++
         }
     }
 
@@ -222,7 +222,6 @@ Rectangle {
             drag.target: root
             onPressed: {
                 root.active = true
-                root.z = Globals.maxZOrder++
             }
         }
     }
