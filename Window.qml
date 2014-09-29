@@ -33,7 +33,14 @@ Rectangle {
         anchors.right: windowBorderRight.right
     }
 
-    // windowBorderTop is part of the title bar, below
+    Rectangle {
+        id: windowBorderTop
+        color: "black"
+        x: 0
+        y: 0
+        width: parent.width
+        height: 1
+    }
     Rectangle {
         id: windowBorderBottom
         color: "black"
@@ -59,27 +66,27 @@ Rectangle {
         height: parent.height
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onPressed: {
+            root.active = true
+            root.z = Globals.maxZOrder++
+        }
+    }
+
     Rectangle {
         id: windowTitleBar
         color: root.active ? "#000080" : "#ffffff"
-        x: 1
+        anchors.top: windowBorderTop.bottom
+        anchors.left: windowBorderLeft.right
+        anchors.right: windowBorderRight.left
         height: 20
-        width: parent.width - 1
 
         WindowsText {
             id: windowTitle
             y: 1
             anchors.centerIn: parent
             color: root.active ? "white" : "black"
-        }
-
-        Rectangle {
-            id: windowBorderTop
-            color: "black"
-            x: 0
-            y: 0
-            width: parent.width
-            height: 1
         }
 
         Rectangle {
@@ -97,14 +104,6 @@ Rectangle {
                 root.active = true
                 root.z = Globals.maxZOrder++
             }
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onPressed: {
-            root.active = true
-            root.z = Globals.maxZOrder++
         }
     }
 }
