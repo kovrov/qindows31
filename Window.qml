@@ -96,7 +96,6 @@ Rectangle {
             onPressed: {
                 root.active = true
                 root.z = Globals.maxZOrder++
-                console.log("z is now " + root.z + " max " + Globals.maxZOrder)
             }
         }
     }
