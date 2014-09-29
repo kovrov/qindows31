@@ -149,6 +149,49 @@ Rectangle {
         anchors.right: windowBorderRight.left
         height: 20
 
+        Rectangle {
+            id: windowTitleButton
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            width: height
+            color: "#c0c0c0"
+
+            Rectangle {
+                id: windowTitleButtonNotchShade
+                color: "#808080"
+                anchors.top: windowTitleButtonNotch.top
+                anchors.left: windowTitleButtonNotch.left
+                width: windowTitleButtonNotch.width
+                height: windowTitleButtonNotch.height
+                anchors.topMargin: 1
+                anchors.leftMargin: 1
+            }
+
+            Rectangle {
+                id: windowTitleButtonRightHandBorder
+                anchors.top: parent.top
+                anchors.topMargin: -windowBorderTop.height
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
+                width: 1
+                color: "#000000"
+            }
+
+            Rectangle {
+                id: windowTitleButtonNotch
+                anchors.centerIn: parent
+                width: 13
+                height: 3
+                color: "#000000"
+
+                Rectangle {
+                    anchors.fill: parent
+                    anchors.margins: 1
+                    color: "white"
+                }
+            }
+        }
+
         WindowsText {
             id: windowTitle
             y: 1
