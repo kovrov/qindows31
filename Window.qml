@@ -147,7 +147,7 @@ Rectangle {
         anchors.top: windowBorderTop.bottom
         anchors.left: windowBorderLeft.right
         anchors.right: windowBorderRight.left
-        height: 20
+        height: 18
 
         Rectangle {
             id: windowTitleButton
@@ -199,10 +199,18 @@ Rectangle {
             color: root.active ? "white" : "black"
         }
 
+        Row {
+            anchors.right: parent.right
+            WindowMaxMinControl {
+            }
+            WindowMaxMinControl {
+            }
+        }
+
         Rectangle {
             id: titleBarBottom
-            y: 20
             x: -windowBorderLeft.width
+            anchors.top: parent.bottom
             height: 1
             width: root.width
             color: "black"
