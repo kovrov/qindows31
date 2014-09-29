@@ -5,6 +5,7 @@ Rectangle {
     id: root
     color: "white"
     default property alias content: content.children
+    property alias title: windowTitle.text
 
     Item {
         id: content
@@ -46,6 +47,13 @@ Rectangle {
         x: 1
         height: 20
         width: parent.width
+
+        WindowsText {
+            id: windowTitle
+            y: 1
+            anchors.centerIn: parent
+            color: "white"
+        }
 
         Rectangle {
             id: windowBorderTop
