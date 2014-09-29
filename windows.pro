@@ -5,4 +5,8 @@ CONFIG -= app_bundle
 QT += quick
 
 SOURCES = \
-    main.cpp
+    main.cpp \
+    font.cpp
+
+HEADERS = \
+    font.h
