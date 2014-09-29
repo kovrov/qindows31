@@ -7,6 +7,11 @@ Rectangle {
     default property alias content: content.children
     property alias title: windowTitle.text
 
+    Component.onCompleted: {
+        x = Math.floor(Math.random() * (parent.width - width));
+        y = Math.floor(Math.random() * (parent.height - height));
+    }
+
     Item {
         id: content
         anchors.top: windowTitleBar.bottom
