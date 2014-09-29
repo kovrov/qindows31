@@ -39,6 +39,12 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 4
+
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.fill: parent
+            anchors.margins: 1
+        }
     }
     Rectangle {
         id: windowBorderBottom
@@ -47,6 +53,12 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: 4
+
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.fill: parent
+            anchors.margins: 1
+        }
     }
     Rectangle {
         id: windowBorderLeft
@@ -54,6 +66,34 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         width: 4
+
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.fill: parent
+            anchors.margins: 1
+        }
+
+        // fixup top
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            height: 2
+            width: 1
+        }
+
+        // fixup bottom
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 1
+            height: 2
+            width: 1
+        }
     }
     Rectangle {
         id: windowBorderRight
@@ -63,6 +103,34 @@ Rectangle {
         anchors.right: parent.right
         width: 4
         height: parent.height
+
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.fill: parent
+            anchors.margins: 1
+        }
+
+        // fixup top
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.left: parent.left
+            anchors.leftMargin: 0
+            anchors.top: parent.top
+            anchors.topMargin: 1
+            height: 2
+            width: 1
+        }
+
+        // fixup bottom
+        Rectangle {
+            color: "#c0c0c0"
+            anchors.left: parent.left
+            anchors.leftMargin: 0
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 1
+            height: 2
+            width: 1
+        }
     }
 
     MouseArea {
@@ -91,8 +159,9 @@ Rectangle {
         Rectangle {
             id: titleBarBottom
             y: 20
+            x: -windowBorderLeft.width
             height: 1
-            width: parent.width
+            width: root.width
             color: "black"
         }
 
