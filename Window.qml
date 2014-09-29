@@ -99,4 +99,12 @@ Rectangle {
             }
         }
     }
+
+    MouseArea {
+        anchors.fill: parent
+        onPressed: {
+            root.active = true
+            root.z = Globals.maxZOrder++
+        }
+    }
 }
