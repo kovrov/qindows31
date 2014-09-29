@@ -28,9 +28,9 @@ Rectangle {
     Item {
         id: content
         anchors.top: windowTitleBar.bottom
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
+        anchors.bottom: windowBorderBottom.top
+        anchors.left: windowBorderLeft.left
+        anchors.right: windowBorderRight.right
     }
 
     // windowBorderTop is part of the title bar, below
