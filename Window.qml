@@ -36,33 +36,32 @@ Rectangle {
     Rectangle {
         id: windowBorderTop
         color: "black"
-        x: 0
-        y: 0
-        width: parent.width
-        height: 1
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 4
     }
     Rectangle {
         id: windowBorderBottom
         color: "black"
-        x: 0
-        y: parent.height
-        width: parent.width
-        height: 1
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 4
     }
     Rectangle {
         id: windowBorderLeft
         color: "black"
-        x: 0
-        y: 0
-        width: 1
-        height: parent.height
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 4
     }
     Rectangle {
         id: windowBorderRight
         color: "black"
-        x: parent.width
-        y: 0
-        width: 1
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        width: 4
         height: parent.height
     }
 
