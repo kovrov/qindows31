@@ -24,17 +24,41 @@
 #include <QGuiApplication>
 #include <QDebug>
 #include <QQuickView>
+#include <QPainter>
 
 #include "font.h"
-
-static Font *SystemFont;
 
 int main(int argc, char **argv)
 {
     QGuiApplication app(argc, argv);
+#if 0
+    Font fobj = Font::fromFile("VGASYS.FON"); // TODO: handle failure
 
-    Font fnt = Font::fromFile("VGASYS.FON"); // TODO: handle failure
-    SystemFont = &fnt;
+    // For ease of use, dump the PNGs.
+    // TODO: we should get more fancy and do these using an image provider.
+    for (int c = 32; c < 256; ++c) { // TODO: unfortunate hardcodes
+        QImage img(fobj.chars[c].width, fobj.height, QImage::Format_ARGB32_Premultiplied);
+        img.fill(Qt::transparent);
+        QPainter p(&img);
+        p.setPen(Qt::white);
+
+        for (int j = 0; j < fobj.height; ++j) {
+            long v = fobj.chars[c].data[j];
+            long m = 1L << (fobj.chars[c].width - 1);
+
+            for (int k = 0; k < fobj.chars[c].width; k++) {
+                if (v & m) {
+                    p.drawPoint(k, j);
+                }
+                v = v << 1;
+            }
+        }
+
+        QFile file(QString::fromLatin1("VGASYS/white/char-%1.png").arg(char(c)));
+        file.open(QIODevice::WriteOnly);
+        img.save(&file, "PNG");
+    }
+#endif
 
     QQuickView view(QUrl::fromLocalFile("windows31.qml"));
     view.show();

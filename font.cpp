@@ -163,43 +163,6 @@ Font nefon(const QByteArray &fon, dword_t neoff) // TODO: fon files can return >
 }
 
 
-#if 0
-                for (int c = 32; c < 256; ++c) {
-                    QImage img(fobj.chars[c].width, fobj.height, QImage::Format_ARGB32_Premultiplied);
-                    img.fill(Qt::transparent);
-                    QPainter p(&img);
-                    p.setPen(Qt::black);
-
-                    for (int j = 0; j < fobj.height; ++j) {
-                        long v = fobj.chars[c].data[j];
-                        long m = 1L << (fobj.chars[c].width - 1);
-
-                        if (c == 64)
-                            qDebug() << v << m;
-
-                        QByteArray out;
-                        for (int k = 0; k < fobj.chars[c].width; k++) {
-                            if (v & m) {
-                                out.append("1");
-                                p.drawPoint(k, j);
-                            }
-                            else
-                                out.append("0");
-                            v = v << 1;
-                        }
-
-//                        if (c == 64)
-//                            qDebug() << out;
-                    }
-
-                    QFile file(QString::fromLatin1("char-%1.png").arg(c));
-                    file.open(QIODevice::WriteOnly);
-                    img.save(&file, "PNG");
-//                    qDebug() << "End";
-                }
-#endif
-
-
 Font dofon(const QByteArray &fon)
 {
     // Find the NE header
