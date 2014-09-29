@@ -2,7 +2,17 @@ import QtQuick 2.2
 
 // window border
 Rectangle {
+    id: root
     color: "white"
+    default property alias content: content.children
+
+    Item {
+        id: content
+        anchors.top: windowTitleBar.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+    }
 
     // windowBorderTop is part of the title bar, below
     Rectangle {
