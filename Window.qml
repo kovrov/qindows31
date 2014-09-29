@@ -1,4 +1,5 @@
 import QtQuick 2.2
+import "globals.js" as Globals
 
 // window border
 Rectangle {
@@ -80,6 +81,10 @@ Rectangle {
         MouseArea {
             anchors.fill: parent
             drag.target: root
+            onPressed: {
+                root.z = Globals.maxZOrder++
+                console.log("z is now " + root.z + " max " + Globals.maxZOrder)
+            }
         }
     }
 }
