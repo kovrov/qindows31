@@ -29,8 +29,8 @@ Rectangle {
         id: content
         anchors.top: windowTitleBar.bottom
         anchors.bottom: windowBorderBottom.top
-        anchors.left: windowBorderLeft.left
-        anchors.right: windowBorderRight.right
+        anchors.left: windowBorderLeft.right
+        anchors.right: windowBorderRight.left
     }
 
     Rectangle {
