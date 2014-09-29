@@ -63,5 +63,10 @@ Rectangle {
             width: parent.width
             color: "black"
         }
+
+        MouseArea {
+            anchors.fill: parent
+            drag.target: root
+        }
     }
 }
