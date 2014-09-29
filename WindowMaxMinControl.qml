@@ -4,6 +4,7 @@ Rectangle {
     width: 18
     height: 18
     color: "#c0c0c0"
+    property bool maximizeButton: false
 
     Rectangle {
         id: divider
@@ -51,6 +52,15 @@ Rectangle {
         anchors.rightMargin: 1
         height: 1
         color: "white"
+    }
+
+    Triangle {
+        p1: !maximizeButton ? Qt.vector2d(width / 2 - 3.5, height / 2 - 2) : Qt.vector2d(width / 2 - 3.5, height / 2 + 2)
+        p2: !maximizeButton ? Qt.vector2d(width / 2, height / 2 + 1) : Qt.vector2d(width / 2, height / 2 - 1);
+        p3: !maximizeButton ? Qt.vector2d(width / 2 + 3.5, height / 2 - 2) : Qt.vector2d(width / 2 + 3.5, height / 2 + 2)
+        width: parent.width
+        height: parent.height
+        color: "black"
     }
 }
 

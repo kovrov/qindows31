@@ -204,6 +204,7 @@ Rectangle {
             WindowMaxMinControl {
             }
             WindowMaxMinControl {
+                maximizeButton: true
             }
         }
 
