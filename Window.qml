@@ -202,9 +202,11 @@ Rectangle {
         Row {
             anchors.right: parent.right
             WindowMaxMinControl {
+                height: windowTitleBar.height
             }
             WindowMaxMinControl {
                 maximizeButton: true
+                height: windowTitleBar.height
 
                 Rectangle {
                     color: "black"

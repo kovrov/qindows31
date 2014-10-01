@@ -1,8 +1,7 @@
 import QtQuick 2.0
 
 Rectangle {
-    width: 18
-    height: 18
+    width: height
     color: "#c0c0c0"
     property bool maximizeButton: false
 
