@@ -8,6 +8,7 @@ Rectangle {
     default property alias content: content.children
     property alias title: windowTitle.text
     property bool active: false;
+    property bool resizable: true
 
     Component.onCompleted: {
         x = Math.floor(Math.random() * (parent.width - width));
@@ -39,12 +40,13 @@ Rectangle {
         color: "black"
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 4
+        height: root.resizable ? 4 : 1
 
         Rectangle {
             color: "#c0c0c0"
             anchors.fill: parent
             anchors.margins: 1
+            visible: root.resizable
         }
     }
     Rectangle {
@@ -53,12 +55,13 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        height: 4
+        height: root.resizable ? 4 : 1
 
         Rectangle {
             color: "#c0c0c0"
             anchors.fill: parent
             anchors.margins: 1
+            visible: root.resizable
         }
     }
     Rectangle {
@@ -66,12 +69,13 @@ Rectangle {
         color: "black"
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        width: 4
+        width: root.resizable ? 4 : 1
 
         Rectangle {
             color: "#c0c0c0"
             anchors.fill: parent
             anchors.margins: 1
+            visible: root.resizable
         }
 
         // fixup top
@@ -83,6 +87,7 @@ Rectangle {
             anchors.topMargin: 1
             height: 2
             width: 1
+            visible: root.resizable
         }
 
         // fixup bottom
@@ -94,6 +99,7 @@ Rectangle {
             anchors.bottomMargin: 1
             height: 2
             width: 1
+            visible: root.resizable
         }
     }
     Rectangle {
@@ -102,13 +108,13 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        width: 4
-        height: parent.height
+        width: root.resizable ? 4 : 1
 
         Rectangle {
             color: "#c0c0c0"
             anchors.fill: parent
             anchors.margins: 1
+            visible: root.resizable
         }
 
         // fixup top
@@ -120,6 +126,7 @@ Rectangle {
             anchors.topMargin: 1
             height: 2
             width: 1
+            visible: root.resizable
         }
 
         // fixup bottom
@@ -131,6 +138,7 @@ Rectangle {
             anchors.bottomMargin: 1
             height: 2
             width: 1
+            visible: root.resizable
         }
     }
 

@@ -23,4 +23,15 @@ Rectangle {
             text: "Hello, world"
         }
     }
+
+    Window {
+        width: 200
+        height: 200
+        title: "A dialog box"
+        resizable: false
+
+        content: WindowsText {
+            text: "A nonresizable window"
+        }
+    }
 }
