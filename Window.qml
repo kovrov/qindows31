@@ -205,6 +205,13 @@ Rectangle {
             }
             WindowMaxMinControl {
                 maximizeButton: true
+
+                Rectangle {
+                    color: "black"
+                    width: 1
+                    height: windowBorderTop.height
+                    y: -windowBorderTop.height
+                }
             }
         }
 
