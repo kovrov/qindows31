@@ -55,6 +55,22 @@ Rectangle {
             anchors.margins: 1
             visible: root.resizable
         }
+
+        MouseArea {
+            enabled: root.resizable
+            // XXX: is it a bug that enabled doesn't affect cursorShape? hmm.
+            cursorShape: root.resizable ? Qt.SizeVerCursor : Qt.ArrowCursor
+            anchors.fill: parent
+            property real lastPos
+            onPressed: {
+                lastPos = mouse.y
+            }
+            onPositionChanged: {
+                root.y = Math.round(root.y - (lastPos - mouse.y))
+                root.height = Math.round(root.height + (lastPos - mouse.y))
+            }
+        }
+
     }
     Rectangle {
         id: windowBorderBottom
@@ -70,6 +86,19 @@ Rectangle {
             anchors.margins: 1
             visible: root.resizable
         }
+
+        MouseArea {
+            enabled: root.resizable
+            cursorShape: root.resizable ? Qt.SizeVerCursor : Qt.ArrowCursor
+            anchors.fill: parent
+            property real lastPos
+            onPressed: {
+                lastPos = mouse.y
+            }
+            onPositionChanged: {
+                root.height = Math.round(root.height + (mouse.y - lastPos))
+            }
+        }
     }
     Rectangle {
         id: windowBorderLeft
@@ -83,6 +112,20 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 1
             visible: root.resizable
+        }
+
+        MouseArea {
+            enabled: root.resizable
+            cursorShape: root.resizable ? Qt.SizeHorCursor : Qt.ArrowCursor
+            anchors.fill: parent
+            property real lastPos
+            onPressed: {
+                lastPos = mouse.x
+            }
+            onPositionChanged: {
+                root.x = Math.round(root.x - (lastPos - mouse.x))
+                root.width = Math.round(root.width + (lastPos - mouse.x))
+            }
         }
 
         // fixup top
@@ -122,6 +165,19 @@ Rectangle {
             anchors.fill: parent
             anchors.margins: 1
             visible: root.resizable
+        }
+
+        MouseArea {
+            enabled: root.resizable
+            cursorShape: root.resizable ? Qt.SizeHorCursor : Qt.ArrowCursor
+            anchors.fill: parent
+            property real lastPos
+            onPressed: {
+                lastPos = mouse.x
+            }
+            onPositionChanged: {
+                root.width = Math.round(root.width + (mouse.x - lastPos))
+            }
         }
 
         // fixup top
