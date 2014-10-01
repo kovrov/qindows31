@@ -55,9 +55,9 @@ Rectangle {
     }
 
     Triangle {
-        p1: !maximizeButton ? Qt.vector2d(width / 2 - 3.5, height / 2 - 2) : Qt.vector2d(width / 2 - 3.5, height / 2 + 2)
-        p2: !maximizeButton ? Qt.vector2d(width / 2, height / 2 + 1) : Qt.vector2d(width / 2, height / 2 - 1);
-        p3: !maximizeButton ? Qt.vector2d(width / 2 + 3.5, height / 2 - 2) : Qt.vector2d(width / 2 + 3.5, height / 2 + 2)
+        p1: !maximizeButton ? Qt.vector2d(width / 2 - 3.5, height / 2 - 2) : Qt.vector2d(width / 2 - 3.5, height / 2 + 0.5)
+        p2: !maximizeButton ? Qt.vector2d(width / 2, height / 2 + 1) : Qt.vector2d(width / 2, height / 2 - 3.0);
+        p3: !maximizeButton ? Qt.vector2d(width / 2 + 3.5, height / 2 - 2) : Qt.vector2d(width / 2 + 3.5, height / 2 + 0.5)
         width: parent.width
         height: parent.height
         color: "black"
