@@ -264,6 +264,7 @@ Rectangle {
         }
 
         Row {
+            visible: root.resizable
             anchors.right: parent.right
             WindowMaxMinControl {
                 height: windowTitleBar.height
