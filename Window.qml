@@ -27,6 +27,13 @@ Rectangle {
         }
     }
 
+    MouseArea {
+        anchors.fill: parent
+        onPressed: {
+            root.active = true
+        }
+    }
+
     Item {
         id: content
         anchors.top: windowTitleBar.bottom
@@ -139,13 +146,6 @@ Rectangle {
             height: 2
             width: 1
             visible: root.resizable
-        }
-    }
-
-    MouseArea {
-        anchors.fill: parent
-        onPressed: {
-            root.active = true
         }
     }
 
