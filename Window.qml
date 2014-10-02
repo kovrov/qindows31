@@ -287,6 +287,13 @@ Rectangle {
                     height: windowBorderTop.height
                     y: -windowBorderTop.height
                 }
+
+                onClicked: {
+                    root.width = root.parent.width
+                    root.height = root.parent.height
+                    root.x = 0
+                    root.y = 0
+                }
             }
         }
 
