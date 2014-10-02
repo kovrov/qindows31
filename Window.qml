@@ -213,6 +213,14 @@ Rectangle {
         anchors.right: windowBorderRight.left
         height: 18
 
+        MouseArea {
+            anchors.fill: parent
+            drag.target: root
+            onPressed: {
+                root.active = true
+            }
+        }
+
         Rectangle {
             id: windowTitleButton
             anchors.top: parent.top
@@ -289,14 +297,6 @@ Rectangle {
             height: 1
             width: root.width
             color: "black"
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            drag.target: root
-            onPressed: {
-                root.active = true
-            }
         }
     }
 }
