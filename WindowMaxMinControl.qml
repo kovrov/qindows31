@@ -1,6 +1,7 @@
 import QtQuick 2.0
 
 MouseArea {
+    id: root
     width: height
     property bool maximizeButton: false
     Rectangle {
@@ -55,13 +56,21 @@ MouseArea {
             color: "white"
         }
 
-        Triangle {
-            p1: !maximizeButton ? Qt.vector2d(width / 2 - 3.5, height / 2 - 2) : Qt.vector2d(width / 2 - 3.5, height / 2 + 0.5)
-            p2: !maximizeButton ? Qt.vector2d(width / 2, height / 2 + 1) : Qt.vector2d(width / 2, height / 2 - 3.0);
-            p3: !maximizeButton ? Qt.vector2d(width / 2 + 3.5, height / 2 - 2) : Qt.vector2d(width / 2 + 3.5, height / 2 + 0.5)
-            width: parent.width
-            height: parent.height
-            color: "black"
+        Column {
+            id: col
+            y: ((root.height - col.height) / 2) + (maximizeButton ? -0.4 : 0.4)
+            x: (root.width - col.width) / 2
+            width: 7
+            Repeater {
+                model: 4
+
+                Rectangle {
+                    color: "black"
+                    height: 1
+                    width: maximizeButton ? 1 + index * 2 : 7 - index * 2
+                    x: (parent.width - width) / 2
+                }
+            }
         }
     }
 }
