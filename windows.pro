@@ -1,8 +1,8 @@
 TARGET = windows
 
-CONFIG -= app_bundle
+CONFIG += c++11
 
-QT += quick
+QT += quick #gui qml
 
 SOURCES = \
     main.cpp \
@@ -10,3 +10,5 @@ SOURCES = \
 
 HEADERS = \
     font.h
+
+include(assets/resources.pri)

@@ -25,8 +25,18 @@
 #include <QDebug>
 #include <QQuickView>
 #include <QPainter>
+#include <QDir>
 
 #include "font.h"
+
+QString adjustPath(const QString &path)
+{
+  #ifdef Q_OS_MAC
+    if (!QDir::isAbsolutePath(path))
+        return QString("%1/../Resources/%2").arg(QCoreApplication::applicationDirPath(), path);
+  #endif
+    return path;
+}
 
 int main(int argc, char **argv)
 {
@@ -60,7 +70,7 @@ int main(int argc, char **argv)
     }
 #endif
 
-    QQuickView view(QUrl::fromLocalFile("windows31.qml"));
+    QQuickView view(adjustPath("windows31.qml"));
     view.show();
 
     return app.exec();
