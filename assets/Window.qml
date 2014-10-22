@@ -1,36 +1,22 @@
 import QtQuick 2.2
-import "globals.js" as Globals
 
 // window border
-Rectangle {
+FocusScope {
     id: root
-    color: "white"
+
     default property alias content: content.children
     property alias title: windowTitle.text
-    property bool active: false;
     property bool resizable: true
 
-    Component.onCompleted: {
-        x = Math.floor(Math.random() * (parent.width - width));
-        y = Math.floor(Math.random() * (parent.height - height));
-
-        this.active = true;
-    }
-
-    onActiveChanged: {
-        if (active) {
-            if (Globals.currentlySelectedWindow)
-                Globals.currentlySelectedWindow.active = false;
-
-            Globals.currentlySelectedWindow = this;
-            root.z = Globals.maxZOrder++
-        }
+    Rectangle {
+        color: "white"
+        anchors.fill: parent
     }
 
     MouseArea {
         anchors.fill: parent
         onPressed: {
-            root.active = true
+            root.forceActiveFocus();
         }
     }
 
@@ -152,6 +138,7 @@ Rectangle {
             visible: root.resizable
         }
     }
+
     Rectangle {
         id: windowBorderRight
         color: "black"
@@ -207,7 +194,7 @@ Rectangle {
 
     Rectangle {
         id: windowTitleBar
-        color: root.active ? "#000080" : "#ffffff"
+        color: root.focus ? "#000080" : "#ffffff"
         anchors.top: windowBorderTop.bottom
         anchors.left: windowBorderLeft.right
         anchors.right: windowBorderRight.left
@@ -217,7 +204,7 @@ Rectangle {
             anchors.fill: parent
             drag.target: root
             onPressed: {
-                root.active = true
+                root.forceActiveFocus();
             }
         }
 
@@ -268,7 +255,7 @@ Rectangle {
             id: windowTitle
             y: 1
             anchors.centerIn: parent
-            color: root.active ? "white" : "black"
+            color: root.focus ? "white" : "black"
         }
 
         Row {
